@@ -13,7 +13,7 @@ for index,i in enumerate(operator_cnt):
     for i in range(0,i):
         array.append(operator[index])
 
-operator_permutation=list(itertools.permutations(array,len(array)))
+operator_permutation=set(itertools.permutations(array,len(array))) #중복을 제거해줘야함
 for i in operator_permutation:
     result=number[0]
     for index,j in enumerate(i):
@@ -26,8 +26,10 @@ for i in operator_permutation:
         elif j=='/':
             if result<0:
                 result=result*(-1)
-            result=result/number[index+1]
-            result=int(result)
+                result=result//number[index+1]
+                result=result*(-1)
+            else:
+                result=result//number[index+1]
     if max<result:
         max=result
     if min>result:
